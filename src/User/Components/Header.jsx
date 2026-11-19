@@ -12,11 +12,11 @@ function Header() {
         {/* logo */}
         <div className='flex items-center'>
           <img width={'50px'} height={'50px'} src="https://img.magnific.com/free-vector/text-books-library-isolated-icon_24877-83372.jpg?semt=ais_hybrid&w=740&q=80" alt="" />
-          <h1 className='text-2xl ms-3 font-bold md:hidden'>BOOKSTORE</h1>
+          <h1 className='text-2xl ms-3 font-bold md:hidden'>BOOK STORE</h1>
         </div>
         {/* Title */}
         <div className='md:flex justify-center items-center hidden'>
-          <h1 className='text-3xl font-bold'>BOOKSTORE</h1>
+          <h1 className='text-3xl font-bold'>BOOK STORE</h1>
 
         </div>
         {/* Login */}

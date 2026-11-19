@@ -1,7 +1,9 @@
-import React from 'react'
-import { FaEye, FaUser } from 'react-icons/fa'
+import React, { useState } from 'react'
+import { FaEye, FaEyeSlash, FaUser } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 function Auth({ insideRegister }) {
+  const [togglePasswordType, settogglePasswordType] = useState(false)
   return (
     <div className='w-full min-h-screen flex justify-center items-center bg-[url(/landing.png)] bg-cover bg-center text-white '>
       <div className='p-10'>
@@ -21,20 +23,60 @@ function Auth({ insideRegister }) {
             <input type="email" placeholder='E Mail' className='bg-white text-black p-2 mb-5 w-full rounded' />
 
             {/* Password */}
-           <div className='flex items-center'>
-             <input type="password" placeholder='Password' className='bg-white text-black p-2 mb-5 w-full rounded' />
-             <FaEye className='text-gray-500 cursor-pointer' style={{marginLeft:"-25px",marginTop:"-20px"}}/>
-           </div>
+            <div className='flex items-center'>
+              <input type={togglePasswordType ? "text" : "password"} placeholder='Password' className='bg-white text-black p-2 mb-5 w-full rounded' />
+              {
+                togglePasswordType ?
+                  <FaEyeSlash onClick={() => settogglePasswordType(!togglePasswordType)} className='text-gray-500 cursor-pointer' style={{ marginLeft: "-25px", marginTop: "-20px" }} />
+                  :
+                  <FaEye onClick={() => settogglePasswordType(!togglePasswordType)} className='text-gray-500 cursor-pointer' style={{ marginLeft: "-25px", marginTop: "-20px" }} />
+              }
+            </div>
+            {/* Forgot password */}
+            <div className='flex justify-between mb-5'>
+              <p className='text-xs text-orange-300'>*Never Share Your Password With Others.</p>
+              {
+                !insideRegister &&
+                <button className='text-xs underline'>Forgot Password</button>
+              }
 
+            </div>
+            {/* Login/Register */}
+            <div className='my-5 text-center'>
+              {
+                insideRegister?
+                <button className='bg-green-800 w-full p-2'>Register</button>
+                :
+                <button  className='bg-green-800 w-full p-2'>Login</button>
+              }
 
+            </div>
+            {/* Google Authentication  */}
+            {
+              !insideRegister&&
+              <div className='text-center my-5'>
+                <p>--------------------------------or--------------------------------</p>
+                <div className='flex justify-center items-center w-full mt-2'>
+                  Google Authentication
 
+                </div>
 
+              </div>
 
+            }
+            {/* New /already user */}
+            <div className='text-center'>
+              {
+                insideRegister?
+                <p className='text-blue'>Existing User? <Link to={'/login'} className='ms-4 underline'>Login</Link></p>
+                :
+                   <p className='text-blue'>New User? <Link to={'/register'} className='ms-4 underline'>Register</Link></p>
+              }
 
+            </div>
           </form>
         </div>
       </div>
-
     </div>
   )
 }
