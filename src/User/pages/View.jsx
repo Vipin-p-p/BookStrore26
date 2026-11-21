@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../Components/Header'
 import Footer from '../../Components/Footer'
-import { FaBackward, FaEye } from 'react-icons/fa'
+import { FaBackward, FaCamera, FaEye } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 function View() {
+  const [modal,setModal]=useState(false)
   return (
     <>
       <Header />
@@ -20,7 +21,7 @@ function View() {
             <div className='col-span-3'>
               <div className='flex justify-between'>
                 <h3 className='font-bold text-2xl'>Title</h3>
-                <button className='text-gray-800'><FaEye /></button>
+                <button onClick={()=>setModal(true)} className='text-gray-800'><FaEye /></button>
               </div>
               <h2 className='font-bold text-blue-200 mt-2'>Author</h2>
               <div className='md:grid grid-cols-3 gap-10 my-10'>
@@ -49,7 +50,8 @@ function View() {
 
         </div>
         {/* Modal */}
-        <div className='relative z-10 overflow-y-auto'>
+        {modal&&
+          <div onClick={()=>setModal(false)} className='relative z-10 overflow-y-auto'>
           <div className='bg-gray-500/75 fixed inset-0'>
             <div className='flex justify-center items-center min-h-screen'>
               <div className='bg-white rounded-2xl w-100 md:w-250'>
@@ -58,6 +60,14 @@ function View() {
                   <h2>Book Images</h2>
                 </div>
                 {/* Modal Body */}
+                <div className='relative p-5'>
+                  <p className='flex items-center text-blue-500 '><FaCamera className='me-3'/>Camera Clicks Of The Book</p>
+                  <div className='flex flex-wrap my-5'>
+                    {/* Duplicate image */}
+                    <img className='md:w-75 w-25 md:me-2 mb:3 md:mt-0' src="https://m.media-amazon.com/images/I/81hPCniF1pL._SL1500_.jpg" alt="" />
+
+                  </div>
+                </div>
 
               </div>
 
@@ -66,6 +76,7 @@ function View() {
           </div>
 
         </div>
+        }
 
       </div>
       <Footer />

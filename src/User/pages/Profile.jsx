@@ -1,10 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Header from '../Components/Header'
+import Footer from '../../Components/Footer'
+import { FaCircleCheck } from 'react-icons/fa6'
+import Edit from '../Components/Edit'
 
 function Profile() {
+  const [currentTab, setCurrentTab] = useState(1)
   return (
-    <div>
-      Profile
-    </div>
+    <>
+      <Header />
+      <div style={{ height: "200px" }} className='bg-black'>
+      </div>
+      <div style={{ height: "230px", width: "230px", borderRadius: '50%', marginLeft: '75px', marginTop: '-130px' }} className='bg-white p-3'>
+        <img style={{ height: "200px", width: "200px", borderRadius: '50%' }} src="https://img.freepik.com/premium-photo/happy-man-ai-generated-portrait-user-profile_1119669-1.jpg" alt="" />
+
+      </div>
+      <div className='flex justify-between px-20 mt-5'>
+        <div className='flex items-center'>
+          <h1 className='font-bold md:text-3xl text-2xl'>Username</h1>
+          <FaCircleCheck className='text-blue-500 ms-3' />
+
+        </div>
+      <Edit/>
+      </div>
+      <p className='text-xl font-bold px-20 mt-5'>Bio</p>
+      <p className='text-justify md:px-20 px-5 my-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, fugiat. Incidunt, natus eos! Consectetur, perferendis ipsa nulla laboriosam ea vero nam repellendus aspernatur corporis, odio voluptatum eos quos suscipit corrupti.
+        Rerum architecto ipsa voluptates ratione error in dolorem vero, accusantium consequatur labore qui harum nihil magnam praesentium alias veritatis voluptatum temporibus quod quia quisquam tempora! Possimus recusandae voluptatum asperiores deleniti?</p>
+
+      <div className='flex justify-center items-center my-8 font-bold text-lg g-10'>
+        <p onClick={() => setCurrentTab(1)} className={currentTab == 1 ? 'p-4 border-gray-200 border-l border-t border-r  rounded cursor-pointer' : 'p-4 border-gray-200 border-b  rounded cursor-pointer '}>Upload Books</p>
+        <p onClick={() => setCurrentTab(2)} className={currentTab == 2 ? 'p-4 border-gray-200 border-l border-t border-r  rounded cursor-pointer' : 'p-4 border-gray-200 border-b  rounded cursor-pointer '}>Upload Book Status</p>
+        <p onClick={() => setCurrentTab(3)} className={currentTab == 3 ? 'p-4 border-gray-200 border-l border-t border-r  rounded cursor-pointer' : 'p-4 border-gray-200 border-b  rounded cursor-pointer '}>Purchase History</p>
+      </div>
+      {currentTab == 1 && <div>Upload Books</div>}
+      {currentTab == 2 && <div>Upload Book Status</div>}
+      {currentTab == 3 && <div>Purchase History</div>}
+
+
+
+      <Footer />
+    </>
   )
 }
 
